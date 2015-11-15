@@ -7,19 +7,23 @@ public class ToggleView : MonoBehaviour {
 
 	private bool firstPerson = false;
 
+	private Vector3 relCameraPos;
+
 
 	// Use this for initialization
 	void Start () {
 		firstPerson = false;
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.R)) {
+			Debug.Log("key pressed");
 			if(firstPerson) {
-				transform.position += new Vector3(0,0,thirdPersonDistance);
+				transform.Translate(new Vector3(0,0,thirdPersonDistance));
 			} else {
-				transform.position -= new Vector3(0,0,thirdPersonDistance);
+				transform.Translate(new Vector3(0,0,(-1)*thirdPersonDistance));
 			}
 			firstPerson = !firstPerson;
 		}
