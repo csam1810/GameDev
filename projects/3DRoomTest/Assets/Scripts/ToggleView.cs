@@ -7,8 +7,6 @@ public class ToggleView : MonoBehaviour {
 
 	private bool firstPerson = false;
 
-	private Vector3 relCameraPos;
-
 
 	// Use this for initialization
 	void Start () {
