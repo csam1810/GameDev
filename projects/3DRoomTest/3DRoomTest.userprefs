@@ -1,13 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Item.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Collector.cs">
     <Files>
-      <File FileName="Assets\Item.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Item.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Collectable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Collector.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HealthPotion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Potion.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Inventory\Inventory.cs" Line="20" Column="26" />
+      <File FileName="Assets\Scripts\Collector.cs" Line="62" Column="5" />
+      <File FileName="Assets\Scripts\Inventory\InventoryItems\InventoryItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Collectables\HealthPotionCollectable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Collectables\Collectable.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

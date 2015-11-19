@@ -5,7 +5,7 @@ public class ToggleView : MonoBehaviour {
 
 	public float thirdPersonDistance = -0.8f;
 
-	private bool firstPerson = false;
+	public bool firstPerson = true;
 
 
 	// Use this for initialization
