@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-/*
- * TODO: issues to discuss:
- * 
- */
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Collector : MonoBehaviour {
 
@@ -13,9 +10,16 @@ public class Collector : MonoBehaviour {
 
 	public float raycastDistance = 100f;
 
+	private bool isInventoryShown = false;
+	private GameObject inventoryCanvas;
+	private Inventory playerInventory;
+
 	// Use this for initialization
 	void Start () {
-
+		playerInventory = GameObject.FindGameObjectWithTag ("PlayerInventory").GetComponent<Inventory>();
+		inventoryCanvas = GameObject.FindGameObjectWithTag("InventoryCanvas");
+		//deactivate inventory canvas upon start
+		inventoryCanvas.SetActive(isInventoryShown);
 	}
 	
 	// Update is called once per frame
@@ -24,14 +28,37 @@ public class Collector : MonoBehaviour {
 			Collectable collectable = getCollectable(getRaycastHitObject());
 			if (collectable) {
 				//try adding item to inventory
-				if(Inventory.instance.addItem(collectable.getInventoryItem())) {
+				if(playerInventory.addItem(collectable.getInventoryItem())) {
 					Debug.Log("add item to inventory!");
 					//collectable is only a component, get whole game object and destroy it
 					Destroy(collectable.gameObject);
 				}
 			}
 		} else if (Input.GetKeyDown (showInventoryKey)) {
-			showInventory();
+			inventoryAction();
+		}
+	}
+
+	private void inventoryAction() {
+		//toggle boolean
+		isInventoryShown = !isInventoryShown;
+		inventoryCanvas.SetActive(isInventoryShown);
+
+		if(isInventoryShown) {
+			isInventoryShown = true;
+			inventoryCanvas.SetActive(isInventoryShown);
+			Button[] itemButtons = inventoryCanvas.GetComponentsInChildren<Button>();
+			List<InventoryItem> items = playerInventory.getItems();
+			//TODO: right now just assume we have less items than buttons, otherwise exception
+			for(int i = 0; i < items.Count; i++) {
+				Image[] itemImages = itemButtons[i].GetComponentsInChildren<Image>();
+				foreach(Image itemImage in itemImages) {
+					if(itemImage.tag.Equals("InventoryCanvasItemSprite")) {
+						itemImage.sprite = items[i].icon;
+					}
+				}
+				
+			}
 		}
 	}
 
@@ -43,14 +70,6 @@ public class Collector : MonoBehaviour {
 			return hit.collider.gameObject;
 		}
 		return null;
-	}
-
-	private void showInventory() {
-		//"show" Collectables in inventory
-		Debug.Log("inventory:");
-		foreach (InventoryItem item in Inventory.instance.getItems()) {
-			Debug.Log ("item name:" + item.name);
-		}
 	}
 
 	private Collectable getCollectable(GameObject obj) {

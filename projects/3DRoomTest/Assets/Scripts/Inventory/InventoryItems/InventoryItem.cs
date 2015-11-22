@@ -5,9 +5,7 @@ using System;
 public abstract class InventoryItem {
 
 	public string name;
-
 	public string description;
-
 	public Sprite icon;
 
 	public InventoryItem(string name, string desc) {
